@@ -16,21 +16,23 @@ class Parse_data {
 
         $html = curl_exec($ch);
         curl_close($ch);
-        $js = json_decode($html, true);
+        $json = json_decode($html, true);
         $result_data = array();
-        foreach ($js['items'] as $key => $value) {
+        foreach ($json['items'] as $el) {
             $temp = array();
-            if ($key == 'name') {
-            $temp[$key] = $value;
-            } elseif ($key == 'salary') {
-                $temp[$key['from']] = $value;
-            }
-            array_push( $result_data, $temp );
+            $temp['lang'] = $this->lang;
+            $temp['title'] = $el['name'];
+            $temp['company'] = $el['employer']['name'];
+            $temp['url'] = $el['apply_alternate_url'];
+            $temp['salary'] = "от ".$el['salary']['from'];
+            $temp['info'] = $el['snippet']['requirement'];
+            array_push($result_data, $temp);
     return $result_data;
     }
     }
 }
 
 $test = new Parse_data('php');
+
 
 var_dump($test->hh_vacs());
