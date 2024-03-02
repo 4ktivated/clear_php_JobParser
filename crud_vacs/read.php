@@ -11,11 +11,10 @@ $sesion = $data_base->get_session();
 
 $vacs = new VacModel($sesion);
 
-#сюда прописать read по языку программирования 
 $stmt = $vacs->read();
 $num_rows = $stmt->rowCount();
 
-if ($num_rows == 0) 
+if ($num_rows > 0) 
 {
     $vacs_arr = array();
     $vacs_arr["vacs"] = array();

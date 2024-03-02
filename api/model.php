@@ -57,7 +57,7 @@ class VacModel
         if($stmt->execute()){
             return true;
         }
-        
+
         return false;
     }   
 #удаляем все данные потому что залоиваться они будут большим скопом и пока нет возможности проверять актуальность вакансии 
@@ -73,6 +73,23 @@ class VacModel
  
     public function search($keywords)
     {
-        
+        $query = "select from ".$this->table_name." where lang like ?";
+        $stmt = $this->conn->prepare($query);
+        $keywords = htmlspecialchars(strip_tags($keywords));
+        $keywords = "%{$keywords}%";
+        $stmt->bindParam(1, $keywords);
+        $stmt->execute();
+        return $stmt;
     }   
+
+    public function readPaging($from_record_num, $records_per_page)
+    {   
+        $query = "select * from ".$this->table_name." order by id desc limit ?, ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $from_record_num, PDO::PARAM_INT);
+        $stmt->bindParam(2, $records_per_page, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
 }
+

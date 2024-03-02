@@ -15,8 +15,6 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 
-#сюда нужано написать парсер с HH и чего-то ещё
-#плюс захардкодить языки
 $data = json_decode(file_get_contents("php://input"));
 
 if (
