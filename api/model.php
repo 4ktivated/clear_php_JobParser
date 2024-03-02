@@ -31,9 +31,48 @@ class VacModel
     }
 
     public function create(){
-        $query = "insert into".$this->table_name."set name=:name, lang=:lang, title=:title, company=:company, url=:url, salary=:salary, info=:info";
+        $query = "insert into".$this->table_name."set,
+         lang=:lang, 
+         title=:title, 
+         company=:company, 
+         url=:url, 
+         salary=:salary, 
+         info=:info";
+
         $stmt = $this->conn->prepare($query);
-         
+
+        $this->lang=htmlspecialchars(strip_tags($this->lang));
+        $this->title=htmlspecialchars(strip_tags($this->title));
+        $this->company=htmlspecialchars(strip_tags($this->company));
+        $this->url=htmlspecialchars(strip_tags($this->url));
+        $this->salary=htmlspecialchars(strip_tags($this->salary));
+        $this->info=htmlspecialchars(strip_tags($this->info));
+
+        $stmt->bindParam(":lang", $this->lang);
+        $stmt->bindParam(":title", $this->title);
+        $stmt->bindParam(":company", $this->company);
+        $stmt->bindParam(":url", $this->url);
+        $stmt->bindParam(":salary", $this->salary);
+        $stmt->bindParam(":info", $this->info);
+        if($stmt->execute()){
+            return true;
+        }
+        
+        return false;
     }   
-    
+#удаляем все данные потому что залоиваться они будут большим скопом и пока нет возможности проверять актуальность вакансии 
+    public function delete()
+    {
+        $query = "delete from ".$this->table_name;
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
+ 
+    public function search($keywords)
+    {
+        
+    }   
 }
