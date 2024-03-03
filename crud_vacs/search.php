@@ -37,7 +37,7 @@ if ($num > 0) {
 
     http_response_code(200);
 
-    echo json_encode($paging_arr);
+    echo json_encode($paging_arr,  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 } else {
     http_response_code(404);
 

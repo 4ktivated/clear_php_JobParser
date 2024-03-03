@@ -47,7 +47,7 @@ if($num>0){
     $paging_arr["paging"]=$paging;
 
     http_response_code(200);
-    echo json_encode($paging_arr);
+    echo json_encode($paging_arr,  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }else{
     http_response_code(404);
     echo json_encode(array("message" => "Вакансий не найденно"), JSON_UNESCAPED_UNICODE);
