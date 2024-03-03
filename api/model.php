@@ -34,14 +34,6 @@ class VacModel
         $query = "insert into ".$this->table_name."(lang, title, company, url, salary, info) 
         values (:lang, :title, :company, :url, :salary, :info)";
 
-        // $query = "insert into ".$this->table_name." set
-        //  lang=:lang, 
-        //  title=:title, 
-        //  company=:company, 
-        //  url=:url, 
-        //  salary=:salary, 
-        //  info=:info";
-
         $stmt = $this->conn->prepare($query);
 
         $this->lang=htmlspecialchars(strip_tags($this->lang));

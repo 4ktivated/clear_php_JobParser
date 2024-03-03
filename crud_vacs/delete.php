@@ -18,8 +18,8 @@ $data = json_decode(file_get_contents("php://input"));
 
 if($item->delete()){
     http_response_code(200);
-    echo json_encode(array("Вакансия удаленнa"), JSON_UNESCAPED_UNICODE);
+    echo json_encode(array("Вакансии удаленны"), JSON_UNESCAPED_UNICODE);
 } else{
     http_response_code(503);
-    echo json_encode(array("message" =>"Вакансия НЕ удалена"));
+    echo json_encode(array("message" =>"Вакансии НЕ удалены"));
 }
