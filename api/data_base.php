@@ -4,21 +4,23 @@ class DB_connection
 {
     private $host = 'localhost';
     private $user = "postgres";
-    private $password = 'postgres';
-    private $database = "test_db";
+    private $password = "postgres";
+    private $dbname = "postgres";
+    private $port = 5432;
 
-    public $con = null;
+    public $conn;
     
     public function get_session()
     {
+        $this->conn = null;
+
         try {
-            $this->con = new PDO(
-                'postgres:host='.$this->host.';dbname='.$this->database.''.$this->user.''.$this->password
-            );
-            $this->con->exec('set names utg8');
+            $this->conn = new PDO(
+                "pgsql:host=".$this->host." port=".$this->port." dbname=".$this->dbname, $this->user, $this->password, );
+            $this->conn->exec("set names 'utf8'");
         } catch(PDOException $e) {
-            echo 'some shit happend'.$e->getMessage();
+            echo 'Ошибка в полючении к бд '.$e->getMessage();
         }
-        return $this->con;
+        return $this->conn;
     }
 }

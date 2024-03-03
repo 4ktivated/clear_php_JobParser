@@ -3,7 +3,7 @@
 class VacModel
 {   
     private $conn;
-    private $table_name = 'vacs';
+    private $table_name = 'public.vacs';
 
 
     public $id;
@@ -22,7 +22,7 @@ class VacModel
     public function read()
     {
         $query = "select 
-        name, lang, title, company, url, salary, info 
+        id, lang, title, company, url, salary, info 
         from ".$this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();

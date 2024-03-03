@@ -35,7 +35,7 @@ if ($num_rows > 0)
     }
     
     http_response_code(200);
-    echo json_encode($paging_arr);
+    echo json_encode($paging_arr, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }else{
     http_response_code(404);
     echo json_encode(array('message'=> 'Данных нет'), JSON_UNESCAPED_UNICODE);
