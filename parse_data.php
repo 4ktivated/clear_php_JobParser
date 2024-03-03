@@ -9,7 +9,7 @@ class Parse_data {
     }
 
     public function hh_vacs()  {
-        $ch = curl_init('https://api.hh.ru/vacancies?text='.'php');
+        $ch = curl_init('https://api.hh.ru/vacancies?text='.$this->lang.'&per_page=100');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); #для записи в переменную
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, true);
