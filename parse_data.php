@@ -38,11 +38,11 @@ class Parse_data {
             $temp['info'] = $el['snippet']['requirement'];
             array_push($result_data, $temp);
         }
-        return $result_data;
+        return json_encode($result_data);
+    }
+
+    public function geekjob_vacs()  
+    {
+        #в планах напистаь сюда парсер для geekjob
     }
 }
-
-// $test = new Parse_data('php');
-
-
-// var_dump($test->hh_vacs());
