@@ -91,5 +91,13 @@ class VacModel
         $stmt->execute();
         return $stmt;
     }
+    public function count()
+    {
+        $query = "select count(*) as total_rows from ".$this->table_name;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['total_rows'];
+    }
 }
 

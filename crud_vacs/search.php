@@ -10,16 +10,16 @@ include_once "../api/model.php";
 $database = new DB_connection();
 $db = $database->get_session();
 
-$product = new VacModel($db);
+$vacs = new VacModel($db);
 
 $keywords = isset($_GET["s"]) ? $_GET["s"] : "";
 
-$stmt = $product->search($keywords);
+$stmt = $vacs->search($keywords);
 $num = $stmt->rowCount();
 
 if ($num > 0) {
-    $vacs_arr = array();
-    $vacs_arr["vacs"] = array();
+    $paging_arr = array();
+    $paging_arr["vacs"] = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract ($row);
@@ -37,7 +37,7 @@ if ($num > 0) {
 
     http_response_code(200);
 
-    echo json_encode($vacs_arr);
+    echo json_encode($paging_arr);
 } else {
     http_response_code(404);
 

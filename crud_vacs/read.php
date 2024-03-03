@@ -16,8 +16,8 @@ $num_rows = $stmt->rowCount();
 
 if ($num_rows > 0) 
 {
-    $vacs_arr = array();
-    $vacs_arr["vacs"] = array();
+    $paging_arr = array();
+    $paging_arr["vacs"] = array();
 
     while($row = $stmt->fetch(PDO::FETCH_ASSOC))
     {
@@ -31,11 +31,11 @@ if ($num_rows > 0)
             'salary' => $salary,
             'info' => $info,
         );
-        array_push($vacs_arr['vacs'], $vacs_item);
+        array_push($paging_arr['vacs'], $vacs_item);
     }
     
     http_response_code(200);
-    echo json_encode($vacs_arr);
+    echo json_encode($paging_arr);
 }else{
     http_response_code(404);
     echo json_encode(array('message'=> 'Данных нет'), JSON_UNESCAPED_UNICODE);

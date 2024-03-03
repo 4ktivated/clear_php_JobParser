@@ -42,7 +42,7 @@ class Parse_data {
     }
 }
 
-$test = new Parse_data('php');
+// $test = new Parse_data('php');
 
 
-var_dump($test->hh_vacs());
+// var_dump($test->hh_vacs());
